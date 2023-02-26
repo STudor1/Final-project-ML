@@ -7,7 +7,6 @@ public class Tile : MonoBehaviour
     [SerializeField] private Color baseColor, offsetColor;
     [SerializeField] private SpriteRenderer _renderer;
     [SerializeField] private GameObject highlight;
-
     public void Init(bool isOffset)
     {
         if (isOffset)
@@ -30,5 +29,4 @@ public class Tile : MonoBehaviour
     {
         highlight.SetActive(false);
     }
-
 }
