@@ -5,17 +5,13 @@ using UnityEngine;
 public class Draggable : MonoBehaviour
 {
     private Vector3 mousePositionOffSet;
-    //[SerializeField] private GameObject objectPrefab;
+    [SerializeField] private GameObject objectPrefab;
    // private Vector3 mousePosition3;
     private Vector2 mousePosition2;
-    private Vector2 test;
+    //private Vector2 test;
     [SerializeField]private GridManager grid;
+    private GameObject copy;
 
-    private void Start()
-    {
-        test.x = 0;
-        test.y = 0;
-    }
     private Vector3 GetMouseWorldPosition()
     {
         //capture mouse position and return WorldPoint
@@ -24,6 +20,8 @@ public class Draggable : MonoBehaviour
 
     private void OnMouseDown()
     {
+        //create a copy of the game object to drag around
+        copy = Instantiate(gameObject);
         //capture the mouse offset
         mousePositionOffSet = gameObject.transform.position - GetMouseWorldPosition();
     }
@@ -31,19 +29,28 @@ public class Draggable : MonoBehaviour
     private void OnMouseDrag()
     {
         mousePosition2 = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        //mousePosition2 = mousePosition3;
-        transform.position = GetMouseWorldPosition() + mousePositionOffSet;
+        //this drags the copy of the object around
+        copy.transform.position = GetMouseWorldPosition() + mousePositionOffSet;
         grid.GetTileAtPosition(mousePosition2);
-        Debug.Log(mousePosition2);
-        Debug.Log(roundVector2(mousePosition2));
-        Debug.Log(grid.GetTileAtPosition(roundVector2(mousePosition2)));
-        //var spawnedObject = Instantiate(objectPrefab, new Vector3(x, y), Quaternion.identity);
+
+        //Debug.Log(mousePosition2);
+        //Debug.Log(roundVector2(mousePosition2));
+        //Debug.Log(grid.GetTileAtPosition(roundVector2(mousePosition2)));
 
     }
+
+    //when we release the mouse a new wall objects gets created at the tile we are on
+    private void OnMouseUp()
+    {
+        var spawnedObject = Instantiate(objectPrefab, new Vector3(roundVector2(mousePosition2).x, roundVector2(mousePosition2).y), Quaternion.identity);
+        //this gets rid of the object we are dragging
+        Destroy(copy);
+    }
+
+
 
     private Vector2 roundVector2(Vector2 toRound) {
         return new Vector2(Mathf.Round(toRound.x), Mathf.Round(toRound.y));
     }
-
 
 }

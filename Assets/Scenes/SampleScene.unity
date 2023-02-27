@@ -724,6 +724,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8944037438409041211, guid: 0ebee978175cd0a47aa3f2d64b79a825, type: 3}
+      propertyPath: grid
+      value: 
+      objectReference: {fileID: 848108728}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ebee978175cd0a47aa3f2d64b79a825, type: 3}
 --- !u!1001 &6407765365763907141
@@ -733,6 +737,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2117991907}
     m_Modifications:
+    - target: {fileID: 1915606690832759935, guid: 81413a6a657ef5c4eb35f06acd2fbc9f, type: 3}
+      propertyPath: grid
+      value: 
+      objectReference: {fileID: 848108728}
     - target: {fileID: 6407765365789296603, guid: 81413a6a657ef5c4eb35f06acd2fbc9f, type: 3}
       propertyPath: m_Name
       value: Agent
@@ -851,6 +859,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2117991907}
     m_Modifications:
+    - target: {fileID: 5544058462318646185, guid: 639f5705ff215ef4ba9413d648019d28, type: 3}
+      propertyPath: grid
+      value: 
+      objectReference: {fileID: 848108728}
     - target: {fileID: 9177839796296337713, guid: 639f5705ff215ef4ba9413d648019d28, type: 3}
       propertyPath: m_Name
       value: Box
