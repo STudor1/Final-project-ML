@@ -20,18 +20,37 @@ public class Draggable : MonoBehaviour
 
     private void OnMouseDown()
     {
-        //create a copy of the game object to drag around
-        copy = Instantiate(gameObject);
-        //capture the mouse offset
-        mousePositionOffSet = gameObject.transform.position - GetMouseWorldPosition();
+        if (gameObject.tag == "Selectable")
+        {
+            mousePositionOffSet = gameObject.transform.position - GetMouseWorldPosition();
+        }
+        else
+        {
+            //create a copy of the game object to drag around
+            copy = Instantiate(gameObject);
+            //capture the mouse offset
+            mousePositionOffSet = gameObject.transform.position - GetMouseWorldPosition();
+        }
+        
     }
 
     private void OnMouseDrag()
     {
-        mousePosition2 = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        //this drags the copy of the object around
-        copy.transform.position = GetMouseWorldPosition() + mousePositionOffSet;
-        grid.GetTileAtPosition(mousePosition2);
+        if (gameObject.tag == "Selectable")
+        {
+            mousePosition2 = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            //this drags the copy of the object around
+            transform.position = GetMouseWorldPosition() + mousePositionOffSet;
+            grid.GetTileAtPosition(mousePosition2);
+        }
+        else
+        {
+            mousePosition2 = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            //this drags the copy of the object around
+            copy.transform.position = GetMouseWorldPosition() + mousePositionOffSet;
+            grid.GetTileAtPosition(mousePosition2);
+        }
+        
 
         //Debug.Log(mousePosition2);
         //Debug.Log(roundVector2(mousePosition2));
@@ -42,9 +61,24 @@ public class Draggable : MonoBehaviour
     //when we release the mouse a new wall objects gets created at the tile we are on
     private void OnMouseUp()
     {
-        var spawnedObject = Instantiate(objectPrefab, new Vector3(roundVector2(mousePosition2).x, roundVector2(mousePosition2).y), Quaternion.identity);
-        //this gets rid of the object we are dragging
-        Destroy(copy);
+        if (gameObject.tag == "Selectable")
+        {
+            var spawnedObject = Instantiate(objectPrefab, new Vector3(roundVector2(mousePosition2).x, roundVector2(mousePosition2).y), Quaternion.identity);
+            spawnedObject.tag = "Selectable";
+            Destroy(gameObject);
+        }
+        else
+        {
+            var spawnedObject = Instantiate(objectPrefab, new Vector3(roundVector2(mousePosition2).x, roundVector2(mousePosition2).y), Quaternion.identity);
+            //this gets rid of the object we are dragging
+            Destroy(copy);
+            //changes the tag of the created gameobject
+            spawnedObject.tag = "Selectable";
+        }
+        
+
+
+        //would probably need to create a list/dic to keep track of them
     }
 
 
