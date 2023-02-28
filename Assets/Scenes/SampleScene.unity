@@ -128,6 +128,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6407765365789296613, guid: 81413a6a657ef5c4eb35f06acd2fbc9f, type: 3}
   m_PrefabInstance: {fileID: 6407765365763907141}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &247306844 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 671610380387121251, guid: 62adf3013b6bc0448a46ad2a55c2517a, type: 3}
+  m_PrefabInstance: {fileID: 671610379859229471}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &459026824
 GameObject:
   m_ObjectHideFlags: 0
@@ -334,6 +339,19 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 671610380387121249, guid: 62adf3013b6bc0448a46ad2a55c2517a, type: 3}
   m_PrefabInstance: {fileID: 671610379859229471}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &545850242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 247306844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4c99bdacd52efc4a81cca359198c9ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UIBox: {fileID: 2117991903}
 --- !u!4 &603943362 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9177839796296337715, guid: 639f5705ff215ef4ba9413d648019d28, type: 3}
@@ -583,7 +601,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
