@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class ObstaclesManager : MonoBehaviour
 {
+    //This will have the methods to add obstacles to a single dictionary and will be called in draggable
+
     private Dictionary<Vector2, GameObject> obstacleDictionary;
 
-    //This will have the methods to add stuff to a single dictoinary and will be called in drag
 
     private void Start()
     {

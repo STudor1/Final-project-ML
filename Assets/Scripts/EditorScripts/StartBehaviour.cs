@@ -40,7 +40,7 @@ public class StartBehaviour : MonoBehaviour
 
                 if(obstacles.GetObstacleAtPosition(pos) != null)
                 {
-                    Debug.Log("Obstacle at " + pos);
+                    Debug.Log("There is a " + obstacles.GetObstacleAtPosition(pos) + " at " + pos);
                 }
 
                 //if (wall.GetGameObjAtPosition(pos) != null) {
