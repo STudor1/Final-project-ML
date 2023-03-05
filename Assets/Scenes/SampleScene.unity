@@ -351,6 +351,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4c99bdacd52efc4a81cca359198c9ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  grid: {fileID: 848108728}
+  wall: {fileID: 7191364894843546501}
+  box: {fileID: 9177839796776646898}
+  obstacles: {fileID: 1940690763}
   UIBox: {fileID: 2117991903}
 --- !u!4 &603943362 stripped
 Transform:
@@ -525,6 +529,50 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5686016844184332827, guid: 0ebee978175cd0a47aa3f2d64b79a825, type: 3}
   m_PrefabInstance: {fileID: 5686016845141882923}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1940690762
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1940690764}
+  - component: {fileID: 1940690763}
+  m_Layer: 0
+  m_Name: ObstaclesManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1940690763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1940690762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f2e73c49a7282f41b709d82abd90340, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1940690764
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1940690762}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.9863834, y: 0.28287077, z: -0.14067629}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2117991903
 GameObject:
   m_ObjectHideFlags: 0
@@ -746,6 +794,10 @@ PrefabInstance:
       propertyPath: grid
       value: 
       objectReference: {fileID: 848108728}
+    - target: {fileID: 8944037438409041211, guid: 0ebee978175cd0a47aa3f2d64b79a825, type: 3}
+      propertyPath: obstacles
+      value: 
+      objectReference: {fileID: 1940690763}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ebee978175cd0a47aa3f2d64b79a825, type: 3}
 --- !u!1001 &6407765365763907141
@@ -759,6 +811,10 @@ PrefabInstance:
       propertyPath: grid
       value: 
       objectReference: {fileID: 848108728}
+    - target: {fileID: 1915606690832759935, guid: 81413a6a657ef5c4eb35f06acd2fbc9f, type: 3}
+      propertyPath: obstacles
+      value: 
+      objectReference: {fileID: 1940690763}
     - target: {fileID: 6407765365789296603, guid: 81413a6a657ef5c4eb35f06acd2fbc9f, type: 3}
       propertyPath: m_Name
       value: Agent
@@ -820,6 +876,10 @@ PrefabInstance:
       propertyPath: grid
       value: 
       objectReference: {fileID: 848108728}
+    - target: {fileID: 5847637874738471306, guid: ef037370ea3e95849a80c4451ebbd301, type: 3}
+      propertyPath: obstacles
+      value: 
+      objectReference: {fileID: 1940690763}
     - target: {fileID: 7191364894033624672, guid: ef037370ea3e95849a80c4451ebbd301, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -870,6 +930,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef037370ea3e95849a80c4451ebbd301, type: 3}
+--- !u!114 &7191364894843546501 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5847637874738471306, guid: ef037370ea3e95849a80c4451ebbd301, type: 3}
+  m_PrefabInstance: {fileID: 7191364894843546500}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c35fc77c913da4946a6c8ab4cb5f0026, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &9177839796776646897
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -881,6 +952,10 @@ PrefabInstance:
       propertyPath: grid
       value: 
       objectReference: {fileID: 848108728}
+    - target: {fileID: 5544058462318646185, guid: 639f5705ff215ef4ba9413d648019d28, type: 3}
+      propertyPath: obstacles
+      value: 
+      objectReference: {fileID: 1940690763}
     - target: {fileID: 9177839796296337713, guid: 639f5705ff215ef4ba9413d648019d28, type: 3}
       propertyPath: m_Name
       value: Box
@@ -931,3 +1006,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 639f5705ff215ef4ba9413d648019d28, type: 3}
+--- !u!114 &9177839796776646898 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5544058462318646185, guid: 639f5705ff215ef4ba9413d648019d28, type: 3}
+  m_PrefabInstance: {fileID: 9177839796776646897}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c35fc77c913da4946a6c8ab4cb5f0026, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
