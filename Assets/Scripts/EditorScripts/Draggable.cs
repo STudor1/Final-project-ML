@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 public class Draggable : MonoBehaviour
 {
+    //[SerializeField] private ObstaclesManager obstacles;
     [SerializeField] private ObstaclesManager obstacles;
     [SerializeField] private GameObject objectPrefab;
     [SerializeField] private GridManager grid;
@@ -13,9 +14,14 @@ public class Draggable : MonoBehaviour
     private Vector2 pos;
     private Vector2 lastPos;
 
+    private string wall = "Wall(Clone)";
+    private string box = "Box(Clone)";
+    private string exit = "Exit(Clone)";
+    private string agent = "Agent(Clone)";
+
     private void Awake()
     {
-        DontDestroyOnLoad(this.gameObject);
+        //DontDestroyOnLoad(this.gameObject);
     }
 
     private void Start()
@@ -82,7 +88,7 @@ public class Draggable : MonoBehaviour
 
             //Debug.Log("Step 2: Will add " + gameObject + " at " + pos);
             //This adds the obstacle to the current position
-            obstacles.AddObstacle(pos, gameObject);
+            checkObstacleAndAdd(pos, gameObject);
         }
         else
         {
@@ -92,7 +98,7 @@ public class Draggable : MonoBehaviour
             //Debug.Log("Step 0: Will add initial " + spawnedObject + " at " + roundVector2(mousePosition2).x + " " + roundVector2(mousePosition2).y);
 
             //This adds the initial obstacle at this position
-            obstacles.AddObstacle(pos, spawnedObject);
+            checkObstacleAndAdd(pos, spawnedObject);
 
             //this gets rid of the object we are dragging
             Destroy(copy);
@@ -107,4 +113,24 @@ public class Draggable : MonoBehaviour
         return new Vector2(Mathf.Round(toRound.x), Mathf.Round(toRound.y));
     }
 
+    //This checks to see what type of obstacle the game object is and adds it to the given position
+    private void checkObstacleAndAdd(Vector2 pos, GameObject obstacle)
+    {
+        if (obstacle.name == wall)
+        {
+            obstacles.AddObstacle(pos, "Wall");
+        }
+        if (obstacle.name == box)
+        {
+            obstacles.AddObstacle(pos, "Box");
+        }
+        if (obstacle.name == agent)
+        {
+            obstacles.AddObstacle(pos, "Agent");
+        }
+        if (obstacle.name == exit)
+        {
+            obstacles.AddObstacle(pos, "Exit");
+        }
+    }
 }

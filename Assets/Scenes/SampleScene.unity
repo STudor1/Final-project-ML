@@ -798,6 +798,10 @@ PrefabInstance:
       propertyPath: obstacles
       value: 
       objectReference: {fileID: 1940690763}
+    - target: {fileID: 8944037438409041211, guid: 0ebee978175cd0a47aa3f2d64b79a825, type: 3}
+      propertyPath: obstacles2
+      value: 
+      objectReference: {fileID: 1940690763}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ebee978175cd0a47aa3f2d64b79a825, type: 3}
 --- !u!1001 &6407765365763907141
@@ -813,6 +817,10 @@ PrefabInstance:
       objectReference: {fileID: 848108728}
     - target: {fileID: 1915606690832759935, guid: 81413a6a657ef5c4eb35f06acd2fbc9f, type: 3}
       propertyPath: obstacles
+      value: 
+      objectReference: {fileID: 1940690763}
+    - target: {fileID: 1915606690832759935, guid: 81413a6a657ef5c4eb35f06acd2fbc9f, type: 3}
+      propertyPath: obstacles2
       value: 
       objectReference: {fileID: 1940690763}
     - target: {fileID: 6407765365789296603, guid: 81413a6a657ef5c4eb35f06acd2fbc9f, type: 3}
@@ -878,6 +886,10 @@ PrefabInstance:
       objectReference: {fileID: 848108728}
     - target: {fileID: 5847637874738471306, guid: ef037370ea3e95849a80c4451ebbd301, type: 3}
       propertyPath: obstacles
+      value: 
+      objectReference: {fileID: 1940690763}
+    - target: {fileID: 5847637874738471306, guid: ef037370ea3e95849a80c4451ebbd301, type: 3}
+      propertyPath: obstacles2
       value: 
       objectReference: {fileID: 1940690763}
     - target: {fileID: 7191364894033624672, guid: ef037370ea3e95849a80c4451ebbd301, type: 3}
@@ -954,6 +966,10 @@ PrefabInstance:
       objectReference: {fileID: 848108728}
     - target: {fileID: 5544058462318646185, guid: 639f5705ff215ef4ba9413d648019d28, type: 3}
       propertyPath: obstacles
+      value: 
+      objectReference: {fileID: 1940690763}
+    - target: {fileID: 5544058462318646185, guid: 639f5705ff215ef4ba9413d648019d28, type: 3}
+      propertyPath: obstacles2
       value: 
       objectReference: {fileID: 1940690763}
     - target: {fileID: 9177839796296337713, guid: 639f5705ff215ef4ba9413d648019d28, type: 3}

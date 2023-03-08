@@ -37,7 +37,7 @@ public class LevelManager : MonoBehaviour
         //GenerateFloor();
         Debug.Log("Objects in dictionary:");
         GenerateObstacles();
-        Debug.Log(obstacles2D.obstacleDictionary.Count);
+        //Debug.Log(obstacles2D.obstacleDictionary.Count);
     }
 
     private void GenerateFloor()
