@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class StartBehaviour : MonoBehaviour
 {
@@ -38,7 +40,7 @@ public class StartBehaviour : MonoBehaviour
 
                 //if get game obj at position isnt null then i will replace it with a game obj at z = 1
 
-                if(obstacles.GetObstacleAtPosition(pos) != null)
+                if (obstacles.GetObstacleAtPosition(pos) != null)
                 {
                     Debug.Log("There is a " + obstacles.GetObstacleAtPosition(pos) + " at " + pos);
                 }
@@ -63,6 +65,9 @@ public class StartBehaviour : MonoBehaviour
                 //gameObjs[new Vector2(x, y)] = ;
             }
         }
+
+        SceneManager.LoadScene("RunScene");
+
         //loop thru the list and lock them in position
     }
 }

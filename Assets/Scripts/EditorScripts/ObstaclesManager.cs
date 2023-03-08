@@ -5,9 +5,13 @@ using UnityEngine;
 public class ObstaclesManager : MonoBehaviour
 {
     //This will have the methods to add obstacles to a single dictionary and will be called in draggable
+    //I dont actully need the game object since I won't be using it instead I could use a string so if game obj is wall pass a string "wall"
+    public Dictionary<Vector2, GameObject> obstacleDictionary;
 
-    private Dictionary<Vector2, GameObject> obstacleDictionary;
-
+    private void Awake()
+    {
+        DontDestroyOnLoad(this.gameObject);
+    }
 
     private void Start()
     {

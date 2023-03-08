@@ -13,6 +13,11 @@ public class Draggable : MonoBehaviour
     private Vector2 pos;
     private Vector2 lastPos;
 
+    private void Awake()
+    {
+        DontDestroyOnLoad(this.gameObject);
+    }
+
     private void Start()
     {
         mousePosition2 = Camera.main.ScreenToWorldPoint(Input.mousePosition);
