@@ -7,6 +7,10 @@ public class LevelManager : MonoBehaviour
     //This will take the 2 dictionaries grid and obstacle and then create the lvl in 3D based on them
     [SerializeField] private GameObject floorPrefab;
     [SerializeField] private GameObject wall3DPrefab;
+    [SerializeField] private GameObject box3DPrefab;
+    [SerializeField] private GameObject agent3DPrefab;
+    [SerializeField] private GameObject exit3DPrefab;
+
 
     [SerializeField] private GridManager grid2D;
     [SerializeField] private ObstaclesManager obstacles2D;
@@ -21,7 +25,12 @@ public class LevelManager : MonoBehaviour
 
     private Vector2 pos;
     private int floorZ = 0;
-    private int obstaclesZ = 1;
+    private int obstaclesY = 1; //y is 1 for everything in the scene, as they are placed at y1 and y from previous becomes z in 3D
+
+    private string wall = "Wall";
+    private string box = "Box";
+    private string exit = "Exit";
+    private string agent = "Agent";
 
     private void Awake()
     {
@@ -64,29 +73,56 @@ public class LevelManager : MonoBehaviour
 
     private void GenerateObstacles()
     {
+        //y in 2d becomes z in 3d
         for (int x = 0; x < width; x++)
         {
-            for (int y = 0; y < height; y++)
+            for (int z = 0; z < height; z++)
             {
-                pos = new Vector2(x, y);
+                pos = new Vector2(x, z);
 
                 //Debug.Log(pos);
 
-                if (obstacles2D.GetObstacleAtPosition(pos) != null)
-                {
-                    Debug.Log("New Scene: There is a " + obstacles2D.GetObstacleAtPosition(pos) + " at " + pos);
-                }
-
-
                 //if (obstacles2D.GetObstacleAtPosition(pos) != null)
                 //{
-                //    var spawnedWall = Instantiate(wall3DPrefab, new Vector3(x, y, obstaclesZ), Quaternion.identity);
-
-                //    obstacles3D[new Vector3(x, y, obstaclesZ)] = spawnedWall;
+                //    Debug.Log("New Scene: There is a " + obstacles2D.GetObstacleAtPosition(pos) + " at " + pos);
                 //}
 
 
+                if (obstacles2D.GetObstacleAtPosition(pos) != null)
+                {
+                    placeObstacleType(obstacles2D.GetObstacleAtPosition(pos), x, z);
+                }
+
+
             }
+        }
+    }
+
+    private void placeObstacleType(string obstacle, int x, int z)
+    {
+        if (obstacle == wall)
+        {
+            var spawnedObstacle = Instantiate(wall3DPrefab, new Vector3(x, obstaclesY, z), Quaternion.identity);
+
+            obstacles3D[new Vector3(x, obstaclesY, z)] = spawnedObstacle;
+        }
+        if (obstacle == box)
+        {
+            var spawnedObstacle = Instantiate(box3DPrefab, new Vector3(x, obstaclesY, z), Quaternion.identity);
+
+            obstacles3D[new Vector3(x, obstaclesY, z)] = spawnedObstacle;
+        }
+        if (obstacle == exit)
+        {
+            var spawnedObstacle = Instantiate(exit3DPrefab, new Vector3(x, obstaclesY, z), Quaternion.identity);
+
+            obstacles3D[new Vector3(x, obstaclesY, z)] = spawnedObstacle;
+        }
+        if (obstacle == agent)
+        {
+            var spawnedObstacle = Instantiate(agent3DPrefab, new Vector3(x, obstaclesY, z), Quaternion.identity);
+
+            obstacles3D[new Vector3(x, obstaclesY, z)] = spawnedObstacle;
         }
     }
 }
