@@ -12,7 +12,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private GameObject exit3DPrefab;
 
 
-    [SerializeField] private GridManager grid2D;
+    //[SerializeField] private GridManager grid2D;
     [SerializeField] private ObstaclesManager obstacles2D;
     //private ObstaclesManager obstacles2D;
 
@@ -24,7 +24,7 @@ public class LevelManager : MonoBehaviour
     //private Dictionary<Vector2, GameObject> grid2d = ObstaclesManager.obstacleDictionary;
 
     private Vector2 pos;
-    private int floorZ = 0;
+    private int floorY = 0;
     private int obstaclesY = 1; //y is 1 for everything in the scene, as they are placed at y1 and y from previous becomes z in 3D
 
     private string wall = "Wall";
@@ -43,8 +43,8 @@ public class LevelManager : MonoBehaviour
         grid3D = new Dictionary<Vector3, GameObject>();
         obstacles3D = new Dictionary<Vector3, GameObject>();
 
-        //GenerateFloor();
-        Debug.Log("Objects in dictionary:");
+        GenerateFloor();
+        //Debug.Log("Objects in dictionary:");
         GenerateObstacles();
         //Debug.Log(obstacles2D.obstacleDictionary.Count);
     }
@@ -53,16 +53,14 @@ public class LevelManager : MonoBehaviour
     {
         for (int x = 0; x < width; x++)
         {
-            for (int y = 0; y < height; y++)
+            for (int z = 0; z < height; z++)
             {
-                pos = new Vector2(x, y);
+                pos = new Vector2(x, z);
 
-                if (grid2D.GetTileAtPosition(pos) != null) 
-                {
-                    var spawnedFloor = Instantiate(floorPrefab, new Vector3(x, y, floorZ), Quaternion.identity);
+                var spawnedFloor = Instantiate(floorPrefab, new Vector3(x, floorY, z), Quaternion.identity);
+                grid3D[new Vector3(x, floorY, z)] = spawnedFloor;
 
-                    grid3D[new Vector3(x, y, floorZ)] = spawnedFloor;
-                }
+                
 
             }
         }
