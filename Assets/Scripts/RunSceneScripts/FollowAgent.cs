@@ -7,7 +7,7 @@ public class FollowAgent : MonoBehaviour
     [SerializeField] private Transform agent; //when we want anything to do with position we need the transform not the game object
     private bool isAgent = false;
     private float xRot = 10f; //cam angles by 10 in x axis
-    private float yRot = 90f; //cam angles by 10 in x axis
+    private float yRot, zRot;
     //We want z = 0 meaning it is on the agent, y 0.75 so it sits a little above the agent and x -1 so it is behind it 
     private Vector3 offset = new Vector3(-1f, 0.75f, 0f);
 
@@ -16,7 +16,9 @@ public class FollowAgent : MonoBehaviour
     //set cam y to 90 if agent is placed on the left side wall
     private void Awake()
     {
-        transform.localRotation = Quaternion.Euler(xRot, yRot, 0f);
+        yRot = transform.localEulerAngles.y;
+        zRot = transform.localEulerAngles.z;
+        transform.localRotation = Quaternion.Euler(xRot, yRot, zRot);
     }
 
     void Update()
