@@ -5,6 +5,7 @@ using UnityEngine;
 public class FollowAgent : MonoBehaviour
 {
     [SerializeField] private Transform agent; //when we want anything to do with position we need the transform not the game object
+    public float xRoti = 10f; //cam angles by 10 in x axis
     private bool isAgent = false;
     private float xRot = 10f; //cam angles by 10 in x axis
     private float yRot, zRot;
@@ -23,9 +24,9 @@ public class FollowAgent : MonoBehaviour
 
     void Update()
     {
-        if(isAgent == false)
+        if (isAgent == false)
         {
-            Debug.Log("Finding agent");
+            //Debug.Log("Finding agent");
             findAgent();
         }
         else
@@ -39,7 +40,7 @@ public class FollowAgent : MonoBehaviour
     private void findAgent()
     {
         agent = GameObject.Find("Agent3D(Clone)").transform;
-        Debug.Log("Agent found");
+        //Debug.Log("Agent found");
         isAgent = true;
     }
 }

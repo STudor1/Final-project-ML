@@ -11,6 +11,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private GameObject agent3DPrefab;
     [SerializeField] private GameObject exit3DPrefab;
 
+    public static Transform exitTrans;
 
     //[SerializeField] private GridManager grid2D;
     [SerializeField] private ObstaclesManager obstacles2D;
@@ -115,6 +116,8 @@ public class LevelManager : MonoBehaviour
             var spawnedObstacle = Instantiate(exit3DPrefab, new Vector3(x, obstaclesY, z), Quaternion.identity);
 
             obstacles3D[new Vector3(x, obstaclesY, z)] = spawnedObstacle;
+
+            exitTrans = spawnedObstacle.transform;
         }
         if (obstacle == agent)
         {
