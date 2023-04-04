@@ -3,6 +3,11 @@ using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
 
+//This is not my code!
+//This is taken from a YouTube video tutorial expalining how to use mlagents
+//Link: https://www.youtube.com/watch?v=zPFU30tbyKs
+//Code is taken directly from there!
+//I find the documentation to be very confusing and branching out in a lot of different places
 public class AgentBehaviour : Agent
 {
     private Vector3 startPos;
@@ -65,5 +70,4 @@ public class AgentBehaviour : Agent
 
     }
 
-    
 }
