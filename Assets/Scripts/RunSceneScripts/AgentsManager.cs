@@ -25,24 +25,27 @@ public class AgentsManager : MonoBehaviour
     //select the 2 with the best scores or the ones that made it furthest in the maze (idk how to determine this yet)
     private void Selection()
     {
-        Debug.Log("Step 3 " + agents.Length);
+        Debug.Log("Step 3 ");
 
-        float max1 = 0;
-        float max2 = 0;
+        float max1 = -100;
+        float max2 = -100;
         //loop thru all agents
         //select the best 2
         //assign them to agent 1 and 2;
         for (int i = 0; i < agents.Length; i++)
         {
+            //Debug.Log(agents[i].GetCumulativeReward());
             if (agents[i].GetCumulativeReward() > max1 )
             {
                 max1 = agents[i].GetCumulativeReward();
                 agent1 = agents[i];
+                //Debug.Log(agent1 + "HERE");
             }
             else if (agents[i].GetCumulativeReward() > max2)
             {
                 max2 = agents[i].GetCumulativeReward();
                 agent2 = agents[i];
+                //Debug.Log(agent2 + "HERE2");
             }
         }
 
