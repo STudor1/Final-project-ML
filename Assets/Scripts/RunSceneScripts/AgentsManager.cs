@@ -62,6 +62,17 @@ public class AgentsManager : MonoBehaviour
 
         float speed1 = agent1.GetSpeed(); //breaks here
         float speed2 = agent2.GetSpeed();
+
+        //This is a check to see if the speeds feed into the ML algo will be > than the max speed if
+        //they are then the speed will have to be reset
+        if (speed1 > 2.5)
+        {
+            speed1 = Random.Range(1f, 2.5f);
+        }
+        if (speed2 > 2.5)
+        {
+            speed2 = Random.Range(1f, 2.5f);
+        }
         meanSpeed = (speed1+speed2) / 2f;
 
         return meanSpeed;

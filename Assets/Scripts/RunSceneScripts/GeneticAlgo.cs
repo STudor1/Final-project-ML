@@ -112,12 +112,18 @@ public class GeneticAlgo : Agent
     //Step 2
     public override void OnActionReceived(ActionBuffers actions)
     {
-        Debug.Log("Step 2");
+        //Debug.Log("Step 2");
 
         float moveX = actions.ContinuousActions[0];
         float moveZ = actions.ContinuousActions[1];
 
         transform.position += new Vector3(moveX, 1, moveZ) * Time.deltaTime * randomSpeed;
+
+        if (transform.position.y < -20)
+        {
+            SetReward(-10f);
+            EndEpisode();
+        }
         //discrete
         //I have 1 bracnh with all values
 
