@@ -1,0 +1,29 @@
+{
+    "MoveToExit": {
+        "checkpoints": [
+            {
+                "steps": 84,
+                "file_path": "results\\TestEnv5.00\\MoveToExit\\MoveToExit-84.onnx",
+                "reward": -100.00149917602539,
+                "creation_time": 1681224400.4778376,
+                "auxillary_file_paths": [
+                    "results\\TestEnv5.00\\MoveToExit\\MoveToExit-84.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 84,
+            "file_path": "results\\TestEnv5.00\\MoveToExit.onnx",
+            "reward": -100.00149917602539,
+            "creation_time": 1681224400.4778376,
+            "auxillary_file_paths": [
+                "results\\TestEnv5.00\\MoveToExit\\MoveToExit-84.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "1.7.1+cu110"
+    }
+}

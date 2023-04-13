@@ -56,6 +56,7 @@ public class GeneticAlgoRay : Agent
     private float randomSpeed = 0.75f;
     private Vector3 startPos;
     private bool firstRun = true;
+    new private Rigidbody rigidbody;
 
     //weights
     private float wLeft;
@@ -95,19 +96,15 @@ public class GeneticAlgoRay : Agent
     //This initialises the speed ONCE, using lazy initialize I keep calling this function
     public override void Initialize()
     {
-        if (firstRun)
-        {
+        //if (firstRun)
+        //{
+            rigidbody = GetComponent<Rigidbody>();
             Debug.Log("Step 1");
-            //randomSpeed = Random.Range(speedMin, speedMax);
-            //firstRun = false;
-
-            wLeft = Random.Range(0, 1);
-            wRight = Random.Range(0, 1);
-            wForward = Random.Range(0, 1);
-            wBack = Random.Range(0, 1);
+            randomSpeed = Random.Range(speedMin, speedMax);
+            firstRun = false;
 
 
-        }
+        //}
 
 
 
@@ -119,19 +116,23 @@ public class GeneticAlgoRay : Agent
         if (firstRun)
         {
             firstRun = false;
+            Debug.Log("Does it get here");
         }
         else
         {
+            rigidbody.velocity = Vector3.zero;
+            rigidbody.angularVelocity = Vector3.zero;
+
             transform.position = startPos; //resets pos to initial pos
-            transform.Rotate(0f, 0f, 0f);
+            
 
             //Debug.Log("Begin");
             //this should ask the manager for the cross over speed?
-            //randomSpeed = manager.CrossOver();
+            randomSpeed = manager.CrossOver();
             //do a mutation?
-            //Debug.Log("Step 5");
-            //randomSpeed = Random.Range(speedMin, speedMax);
-            //randomSpeed = randomSpeed + Random.Range(speedMin, speedMax - 1.5f) - Random.Range(speedMin, speedMax - 1.5f); // slightly change the value 
+            Debug.Log("Step 5");
+            randomSpeed = Random.Range(speedMin, speedMax);
+            randomSpeed = randomSpeed + Random.Range(speedMin, speedMax - 0.5f) - Random.Range(speedMin, speedMax - 0.5f); // slightly change the value 
 
             //Initialize(); //calling the initialize funtion every new run
         }
@@ -214,6 +215,23 @@ public class GeneticAlgoRay : Agent
             // transform.position += new Vector3(+moveX, transform.position.y, moveZ) * Time.deltaTime * randomSpeed;
         }
 
+        if (isMovingBackwards)
+        {
+            if (hitFront.distance > 0.75)
+            {
+                isMovingForward = true;
+                isMovingBackwards = false;
+            }
+        }
+
+        if (isMovingRight)
+        {
+            if (hitLeft.distance > 0.75)
+            {
+                isMovingLeft = true;
+                isMovingRight = false;
+            }
+        }
 
         //This adds the destination it is aiming to get to
         if (isMovingForward)
@@ -248,7 +266,7 @@ public class GeneticAlgoRay : Agent
         float moveX = actions.ContinuousActions[0];
         float moveZ = actions.ContinuousActions[1];
 
-        transform.position += new Vector3(moveX, 1, moveZ) * Time.deltaTime * randomSpeed;
+        transform.position += new Vector3(moveX, transform.position.y, moveZ) * Time.deltaTime * randomSpeed;
 
         if (transform.position.y < -20)
         {
@@ -277,30 +295,7 @@ public class GeneticAlgoRay : Agent
         ////float moveForward = actions.DiscreteActions[3];
         ////float moveBackward = actions.DiscreteActions[4];
 
-        //switch (action)
-        //{
-        //    case 0:
-        //        //Do nothing
-        //        break;
-        //    case 1:
-        //        //Take a left
-        //        MoveLeft();
-        //        break;
-        //    case 2:
-        //        //Take a left
-        //        MoveRight();
-        //        break;
-        //    case 3:
-        //        //Take a left
-        //        MoveForward();
-        //        break;
-        //    case 4:
-        //        //Take a left
-        //        MoveBackward();
-        //        break;
-        //    default:
-        //        break;
-        //}
+       
 
     }
 
@@ -323,28 +318,5 @@ public class GeneticAlgoRay : Agent
     public float GetSpeed()
     {
         return randomSpeed;
-    }
-
-    //Problem might be in here?
-    private void MoveLeft()
-    {
-        transform.position += new Vector3(transform.position.x - 1, transform.position.y, transform.position.z) * Time.deltaTime * randomSpeed;
-    }
-
-    private void MoveRight()
-    {
-        transform.position += new Vector3(transform.position.x + 1, transform.position.y, transform.position.z) * Time.deltaTime * randomSpeed;
-
-    }
-
-    private void MoveForward()
-    {
-        transform.position += new Vector3(transform.position.x, transform.position.y, transform.position.z + 1) * Time.deltaTime * randomSpeed;
-
-    }
-
-    private void MoveBackward()
-    {
-        transform.position += new Vector3(transform.position.x, transform.position.y, transform.position.z - 1) * Time.deltaTime * randomSpeed;
     }
 }

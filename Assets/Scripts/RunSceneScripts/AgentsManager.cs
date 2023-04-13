@@ -10,13 +10,20 @@ using UnityEngine;
 public class AgentsManager : MonoBehaviour
 {
     private float meanSpeed;
-    private GeneticAlgo agent1;
-    private GeneticAlgo agent2;
-    private GeneticAlgo[] agents;
+    private GeneticAlgoRay agent1;
+    private GeneticAlgoRay agent2;
+    private GeneticAlgoRay[] agents;
+    //private GeneticAlgo agent1;
+    //private GeneticAlgo agent2;
+    //private GeneticAlgo[] agents;
+    float max1 = -10000;
+    float max2 = -10000;
 
     private void Start()
     {
-        agents = FindObjectsOfType<GeneticAlgo>(); //get all the agents in the scene
+        agents = FindObjectsOfType<GeneticAlgoRay>(); //get all the agents in the scene
+        //agents = FindObjectsOfType<GeneticAlgo>(); //get all the agents in the scene
+
     }
 
     //Step 3
@@ -27,11 +34,11 @@ public class AgentsManager : MonoBehaviour
     {
         Debug.Log("Step 3 ");
 
-        float max1 = -100;
-        float max2 = -100;
+        
         //loop thru all agents
         //select the best 2
         //assign them to agent 1 and 2;
+        //Debug.Log(agents.Length + "long");
         for (int i = 0; i < agents.Length; i++)
         {
             //Debug.Log(agents[i].GetCumulativeReward());
@@ -65,13 +72,13 @@ public class AgentsManager : MonoBehaviour
 
         //This is a check to see if the speeds feed into the ML algo will be > than the max speed if
         //they are then the speed will have to be reset
-        if (speed1 > 2.5)
+        if (speed1 > 1.5)
         {
-            speed1 = Random.Range(1f, 2.5f);
+            speed1 = Random.Range(0.5f, 1.5f);
         }
-        if (speed2 > 2.5)
+        if (speed2 > 1.5)
         {
-            speed2 = Random.Range(1f, 2.5f);
+            speed2 = Random.Range(0.5f, 1.5f);
         }
         meanSpeed = (speed1+speed2) / 2f;
 
