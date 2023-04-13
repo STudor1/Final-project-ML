@@ -255,6 +255,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 1305918002462602391, guid: 8ff5d07280da3834d9dfb463f9c39207, type: 3}
+  xRoti: 10
 --- !u!1 &1400947247
 GameObject:
   m_ObjectHideFlags: 0
@@ -304,5 +305,4 @@ MonoBehaviour:
   box3DPrefab: {fileID: 5088186593440228601, guid: 756ba4271f872aa45944cb1d4bd14750, type: 3}
   agent3DPrefab: {fileID: 1305918002462602391, guid: 8ff5d07280da3834d9dfb463f9c39207, type: 3}
   exit3DPrefab: {fileID: 6697738148657409809, guid: a106555c5fd851044a1c4e794f8586fd, type: 3}
-  grid2D: {fileID: 0}
   obstacles2D: {fileID: 0}
