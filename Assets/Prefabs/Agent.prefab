@@ -213,6 +213,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c35fc77c913da4946a6c8ab4cb5f0026, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstacles: {fileID: 0}
   objectPrefab: {fileID: 6407765365789296603}
-  grid: {fileID: 0}
