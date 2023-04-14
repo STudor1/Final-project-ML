@@ -1,0 +1,65 @@
+{
+    "MoveToExit": {
+        "checkpoints": [
+            {
+                "steps": 2499993,
+                "file_path": "results\\TestEnv3.10\\MoveToExit\\MoveToExit-2499993.onnx",
+                "reward": null,
+                "creation_time": 1681488865.8585632,
+                "auxillary_file_paths": [
+                    "results\\TestEnv3.10\\MoveToExit\\MoveToExit-2499993.pt"
+                ]
+            },
+            {
+                "steps": 2999952,
+                "file_path": "results\\TestEnv3.10\\MoveToExit\\MoveToExit-2999952.onnx",
+                "reward": -194.1449956893921,
+                "creation_time": 1681489541.1415534,
+                "auxillary_file_paths": [
+                    "results\\TestEnv3.10\\MoveToExit\\MoveToExit-2999952.pt"
+                ]
+            },
+            {
+                "steps": 3499968,
+                "file_path": "results\\TestEnv3.10\\MoveToExit\\MoveToExit-3499968.onnx",
+                "reward": -207.86749124526978,
+                "creation_time": 1681490215.6332712,
+                "auxillary_file_paths": [
+                    "results\\TestEnv3.10\\MoveToExit\\MoveToExit-3499968.pt"
+                ]
+            },
+            {
+                "steps": 3999989,
+                "file_path": "results\\TestEnv3.10\\MoveToExit\\MoveToExit-3999989.onnx",
+                "reward": null,
+                "creation_time": 1681490886.7770445,
+                "auxillary_file_paths": [
+                    "results\\TestEnv3.10\\MoveToExit\\MoveToExit-3999989.pt"
+                ]
+            },
+            {
+                "steps": 4094361,
+                "file_path": "results\\TestEnv3.10\\MoveToExit\\MoveToExit-4094361.onnx",
+                "reward": null,
+                "creation_time": 1681491109.19248,
+                "auxillary_file_paths": [
+                    "results\\TestEnv3.10\\MoveToExit\\MoveToExit-4094361.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 4094361,
+            "file_path": "results\\TestEnv3.10\\MoveToExit.onnx",
+            "reward": null,
+            "creation_time": 1681491109.19248,
+            "auxillary_file_paths": [
+                "results\\TestEnv3.10\\MoveToExit\\MoveToExit-4094361.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "1.7.1+cu110"
+    }
+}
