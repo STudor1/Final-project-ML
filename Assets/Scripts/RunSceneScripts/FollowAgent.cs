@@ -39,7 +39,7 @@ public class FollowAgent : MonoBehaviour
     //There's always going to be an agent (need to add this later)
     private void findAgent()
     {
-        agent = GameObject.Find("Agent3D(Clone)").transform;
+        agent = GameObject.Find("AgentTest(Clone)").transform;
         //Debug.Log("Agent found");
         isAgent = true;
     }
