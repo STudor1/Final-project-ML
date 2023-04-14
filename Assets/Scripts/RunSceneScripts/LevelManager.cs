@@ -107,15 +107,15 @@ public class LevelManager : MonoBehaviour
         }
         if (obstacle == box)
         {
-            var spawnedObstacle = Instantiate(box3DPrefab, new Vector3(x, obstaclesY, z), Quaternion.identity);
+            var spawnedObstacle = Instantiate(box3DPrefab, new Vector3(x, 0.75f, z), Quaternion.identity);
 
-            obstacles3D[new Vector3(x, obstaclesY, z)] = spawnedObstacle;
+            obstacles3D[new Vector3(x, 0.75f, z)] = spawnedObstacle;
         }
         if (obstacle == exit)
         {
-            var spawnedObstacle = Instantiate(exit3DPrefab, new Vector3(x, obstaclesY, z), Quaternion.identity);
+            var spawnedObstacle = Instantiate(exit3DPrefab, new Vector3(x, 0.55f, z), Quaternion.identity);
 
-            obstacles3D[new Vector3(x, obstaclesY, z)] = spawnedObstacle;
+            obstacles3D[new Vector3(x, 0.55f, z)] = spawnedObstacle;
 
             exitTrans = spawnedObstacle.transform;
         }
