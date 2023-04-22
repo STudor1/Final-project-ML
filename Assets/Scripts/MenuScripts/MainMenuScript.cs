@@ -21,8 +21,23 @@ public class MainMenuScript : MonoBehaviour
 
     //This will be called to get the user input from the fields 
     public void GetUserInput() {
-        width = int.Parse(xField.text.ToString());
-        height = int.Parse(yField.text.ToString());
+        if (int.TryParse(xField.text.ToString(), out int widthInput))
+        {
+            width = widthInput;
+        }
+        else
+        {
+            xField.text = "Please enter a number";
+        }
+
+        if (int.TryParse(yField.text.ToString(), out int heightInput))
+        {
+            height = heightInput;
+        } 
+        else
+        {
+            yField.text = "Please enter a number";
+        }
 
         CheckWidth(width); //check if width is between given values
         CheckHeight(height); //check if height is between given values
