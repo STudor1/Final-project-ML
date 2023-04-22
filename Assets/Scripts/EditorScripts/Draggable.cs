@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 public class Draggable : MonoBehaviour
 {
+    private int xCoord = MainMenuScript.width;
+    private int yCoord = MainMenuScript.height;
+
     //[SerializeField] private ObstaclesManager obstacles;
     [SerializeField] private ObstaclesManager obstacles;
     [SerializeField] private GameObject objectPrefab;
@@ -75,36 +78,54 @@ public class Draggable : MonoBehaviour
     //We can move that wall object and change its position
     private void OnMouseUp()
     {
-        pos = new Vector2(roundVector2(mousePosition2).x, roundVector2(mousePosition2).y); //current position
-
-        if (gameObject.tag == "Selectable")
+        if ((roundVector2(mousePosition2).x < xCoord && roundVector2(mousePosition2).x > -1) &&
+            (roundVector2(mousePosition2).y < yCoord && roundVector2(mousePosition2).y > -1))
         {
-            //This changes the position of the obstacle to the new position 
-            gameObject.transform.position = pos;
+            pos = new Vector2(roundVector2(mousePosition2).x, roundVector2(mousePosition2).y); //current position
 
-            //Debug.Log("Step 1: Will remove " + gameObject + " at " + roundVector2(lastPos).x + " " + roundVector2(lastPos).y);
-            //This removes the obstacle from the last position it was at 
-            obstacles.RemoveObstacle(lastPos);
+            if (gameObject.tag == "Selectable")
+            {
+                //This changes the position of the obstacle to the new position 
+                gameObject.transform.position = pos;
 
-            //Debug.Log("Step 2: Will add " + gameObject + " at " + pos);
-            //This adds the obstacle to the current position
-            checkObstacleAndAdd(pos, gameObject);
+                //Debug.Log("Step 1: Will remove " + gameObject + " at " + roundVector2(lastPos).x + " " + roundVector2(lastPos).y);
+                //This removes the obstacle from the last position it was at 
+                obstacles.RemoveObstacle(lastPos);
+
+                //Debug.Log("Step 2: Will add " + gameObject + " at " + pos);
+                //This adds the obstacle to the current position
+                checkObstacleAndAdd(pos, gameObject);
+            }
+            else
+            {
+                var spawnedObject = Instantiate(objectPrefab, new Vector3(roundVector2(mousePosition2).x, roundVector2(mousePosition2).y), Quaternion.identity);
+
+                //Debug.Log("Game obj is " + spawnedObject);
+                //Debug.Log("Step 0: Will add initial " + spawnedObject + " at " + roundVector2(mousePosition2).x + " " + roundVector2(mousePosition2).y);
+
+                //This adds the initial obstacle at this position
+                checkObstacleAndAdd(pos, spawnedObject);
+
+                //this gets rid of the object we are dragging
+                Destroy(copy);
+                //changes the tag of the created gameobject
+                spawnedObject.tag = "Selectable";
+            }
         }
         else
         {
-            var spawnedObject = Instantiate(objectPrefab, new Vector3(roundVector2(mousePosition2).x, roundVector2(mousePosition2).y), Quaternion.identity);
-
-            //Debug.Log("Game obj is " + spawnedObject);
-            //Debug.Log("Step 0: Will add initial " + spawnedObject + " at " + roundVector2(mousePosition2).x + " " + roundVector2(mousePosition2).y);
-
-            //This adds the initial obstacle at this position
-            checkObstacleAndAdd(pos, spawnedObject);
-
-            //this gets rid of the object we are dragging
-            Destroy(copy);
-            //changes the tag of the created gameobject
-            spawnedObject.tag = "Selectable";
+            Debug.Log("Invalid placement, object placed outside grid.");
+            if (gameObject.tag == "Selectable")
+            {
+                obstacles.RemoveObstacle(lastPos);
+                Destroy(gameObject);
+            }
+            else
+            {
+                Destroy(copy);
+            }
         }
+        
     }
 
 

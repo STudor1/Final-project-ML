@@ -1780,9 +1780,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Step 2: Once the grid is created, use the menu in the right corner to
     customise the \nmaze. Click and drag an object from the menu to place on grid.
-    To delete an object,\ndrag the object to the red square in the right corner.
-    For the algorithm to work you \nwill need to have placed exactly one agent and
-    one exit.\n"
+    To delete an object,\ndrag the object to the outside of the grid. For the algorithm
+    to work you will need to \nhave placed exactly one agent and one exit.\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
