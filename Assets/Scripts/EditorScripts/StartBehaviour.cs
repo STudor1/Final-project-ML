@@ -18,11 +18,14 @@ public class StartBehaviour : MonoBehaviour
     private Dictionary<Vector2, GameObject> gameObjs;
     private Vector2 pos;
 
+    private bool isAgentPlaced = false;
+    private bool isExitPlaced = false;
+
     private void OnMouseDown()
     {
         Debug.Log("Button clicked");
         //disable the ui box 
-        UIBox.SetActive(false);
+        
         //create a new list with every tile and every game object that has been placed on the grid
         gameObjs = new Dictionary<Vector2, GameObject>();
 
@@ -43,6 +46,15 @@ public class StartBehaviour : MonoBehaviour
                 if (obstacles.GetObstacleAtPosition(pos) != null)
                 {
                     Debug.Log("There is a " + obstacles.GetObstacleAtPosition(pos) + " at " + pos);
+
+                    if (obstacles.GetObstacleAtPosition(pos) == "Agent")
+                    {
+                        isAgentPlaced = true;
+                    }
+                    if (obstacles.GetObstacleAtPosition(pos) == "Exit")
+                    {
+                        isExitPlaced = true;
+                    }
                 }
 
                 //if (wall.GetGameObjAtPosition(pos) != null) {
@@ -66,7 +78,16 @@ public class StartBehaviour : MonoBehaviour
             }
         }
 
-        SceneManager.LoadScene("RunScene");
+        if (isAgentPlaced && isExitPlaced)
+        {
+            UIBox.SetActive(false);
+            SceneManager.LoadScene("RunScene");
+        }
+        else
+        {
+            Debug.Log("Place one agent and one exit to start training.");
+        }
+        
 
         //loop thru the list and lock them in position
     }
