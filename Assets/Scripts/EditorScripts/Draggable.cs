@@ -62,6 +62,7 @@ public class Draggable : MonoBehaviour
         {
             mousePosition2 = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             //This drags the object once placed
+            obstacles.RemoveObstacle(lastPos);
             transform.position = GetMouseWorldPosition() + mousePositionOffSet;
             grid.GetTileAtPosition(mousePosition2);
         }
@@ -83,33 +84,48 @@ public class Draggable : MonoBehaviour
         {
             pos = new Vector2(roundVector2(mousePosition2).x, roundVector2(mousePosition2).y); //current position
 
-            if (gameObject.tag == "Selectable")
+            if (obstacles.GetObstacleAtPosition(pos) == null)
             {
-                //This changes the position of the obstacle to the new position 
-                gameObject.transform.position = pos;
+                if (gameObject.tag == "Selectable")
+                {
+                    //This changes the position of the obstacle to the new position 
+                    gameObject.transform.position = pos;
 
-                //Debug.Log("Step 1: Will remove " + gameObject + " at " + roundVector2(lastPos).x + " " + roundVector2(lastPos).y);
-                //This removes the obstacle from the last position it was at 
-                obstacles.RemoveObstacle(lastPos);
+                    //Debug.Log("Step 1: Will remove " + gameObject + " at " + roundVector2(lastPos).x + " " + roundVector2(lastPos).y);
+                    //This removes the obstacle from the last position it was at 
+                    //obstacles.RemoveObstacle(lastPos);
 
-                //Debug.Log("Step 2: Will add " + gameObject + " at " + pos);
-                //This adds the obstacle to the current position
-                checkObstacleAndAdd(pos, gameObject);
+                    //Debug.Log("Step 2: Will add " + gameObject + " at " + pos);
+                    //This adds the obstacle to the current position
+                    checkObstacleAndAdd(pos, gameObject);
+                }
+                else
+                {
+                    var spawnedObject = Instantiate(objectPrefab, new Vector3(roundVector2(mousePosition2).x, roundVector2(mousePosition2).y), Quaternion.identity);
+
+                    //Debug.Log("Game obj is " + spawnedObject);
+                    //Debug.Log("Step 0: Will add initial " + spawnedObject + " at " + roundVector2(mousePosition2).x + " " + roundVector2(mousePosition2).y);
+
+                    //This adds the initial obstacle at this position
+                    checkObstacleAndAdd(pos, spawnedObject);
+
+                    //this gets rid of the object we are dragging
+                    Destroy(copy);
+                    //changes the tag of the created gameobject
+                    spawnedObject.tag = "Selectable";
+                }
             }
             else
             {
-                var spawnedObject = Instantiate(objectPrefab, new Vector3(roundVector2(mousePosition2).x, roundVector2(mousePosition2).y), Quaternion.identity);
-
-                //Debug.Log("Game obj is " + spawnedObject);
-                //Debug.Log("Step 0: Will add initial " + spawnedObject + " at " + roundVector2(mousePosition2).x + " " + roundVector2(mousePosition2).y);
-
-                //This adds the initial obstacle at this position
-                checkObstacleAndAdd(pos, spawnedObject);
-
-                //this gets rid of the object we are dragging
-                Destroy(copy);
-                //changes the tag of the created gameobject
-                spawnedObject.tag = "Selectable";
+                Debug.Log("Position " + pos + " occupied");
+                if (gameObject.tag == "Selectable")
+                {
+                    Destroy(gameObject);
+                }
+                else
+                {
+                    Destroy(copy);
+                }
             }
         }
         else
