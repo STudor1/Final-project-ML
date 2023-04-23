@@ -53,6 +53,17 @@ public class Draggable : MonoBehaviour
         {
             //create a copy of the game object to drag around
             copy = Instantiate(gameObject);
+
+            if (isAgentPlaced && copy.ToString() == "Agent(Clone) (UnityEngine.GameObject)")
+            {
+                Destroy(copy);
+                Debug.Log("No more agents for you." /*+ isAgentPlaced*/);
+            }
+            else if (isExitPlaced && copy.ToString() == "Exit(Clone) (UnityEngine.GameObject)")
+            {
+                Destroy(copy);
+                Debug.Log("No more exits for you." /*+ isExitPlaced*/);
+            }
             //capture the mouse offset
             mousePositionOffSet = gameObject.transform.position - GetMouseWorldPosition();
         }
@@ -88,7 +99,10 @@ public class Draggable : MonoBehaviour
         {
             mousePosition2 = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             //This drags the copy of the object around
-            copy.transform.position = GetMouseWorldPosition() + mousePositionOffSet;
+            if (copy != null)
+            {
+                copy.transform.position = GetMouseWorldPosition() + mousePositionOffSet;
+            }
             grid.GetTileAtPosition(mousePosition2);
         }
     }
@@ -119,18 +133,22 @@ public class Draggable : MonoBehaviour
                 }
                 else
                 {
-                    var spawnedObject = Instantiate(objectPrefab, new Vector3(roundVector2(mousePosition2).x, roundVector2(mousePosition2).y), Quaternion.identity);
+                    if (copy != null)
+                    {
+                        var spawnedObject = Instantiate(objectPrefab, new Vector3(roundVector2(mousePosition2).x, roundVector2(mousePosition2).y), Quaternion.identity);
 
-                    //Debug.Log("Game obj is " + spawnedObject);
-                    //Debug.Log("Step 0: Will add initial " + spawnedObject + " at " + roundVector2(mousePosition2).x + " " + roundVector2(mousePosition2).y);
+                        //Debug.Log("Game obj is " + spawnedObject);
+                        //Debug.Log("Step 0: Will add initial " + spawnedObject + " at " + roundVector2(mousePosition2).x + " " + roundVector2(mousePosition2).y);
 
-                    //This adds the initial obstacle at this position
-                    checkObstacleAndAdd(pos, spawnedObject);
+                        //This adds the initial obstacle at this position
+                        checkObstacleAndAdd(pos, spawnedObject);
 
-                    //this gets rid of the object we are dragging
-                    Destroy(copy);
-                    //changes the tag of the created gameobject
-                    spawnedObject.tag = "Selectable";
+                        //this gets rid of the object we are dragging
+                        Destroy(copy);
+                        //changes the tag of the created gameobject
+                        spawnedObject.tag = "Selectable";
+                    }
+                    
                 }
             }
             else
@@ -149,7 +167,20 @@ public class Draggable : MonoBehaviour
         else
         {
             Debug.Log("Invalid placement, object placed outside grid.");
-            if (gameObject.tag == "Selectable")
+            
+            if (gameObject.tag == "Selectable" && gameObject.ToString() == "Agent(Clone) (UnityEngine.GameObject)")
+            {
+                obstacles.RemoveObstacle(lastPos);
+                isAgentPlaced = false;
+                //Destroy(gameObject);
+            }
+            else if (gameObject.tag == "Selectable" && gameObject.ToString() == "Exit(Clone) (UnityEngine.GameObject)")
+            {
+                obstacles.RemoveObstacle(lastPos);
+                isExitPlaced = false;
+                //Destroy(gameObject);
+            }
+            else if (gameObject.tag == "Selectable")
             {
                 obstacles.RemoveObstacle(lastPos);
                 Destroy(gameObject);
