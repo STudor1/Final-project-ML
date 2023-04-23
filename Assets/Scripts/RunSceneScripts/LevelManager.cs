@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
@@ -48,6 +49,19 @@ public class LevelManager : MonoBehaviour
         //Debug.Log("Objects in dictionary:");
         GenerateObstacles();
         //Debug.Log(obstacles2D.obstacleDictionary.Count);
+
+        Debug.Log("Press Enter to start training.");
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            Debug.Log("Starting Training");
+            //Load new scene
+            SceneManager.LoadScene(3);
+
+        }
     }
 
     private void GenerateFloor()
@@ -59,6 +73,9 @@ public class LevelManager : MonoBehaviour
                 pos = new Vector2(x, z);
 
                 var spawnedFloor = Instantiate(floorPrefab, new Vector3(x, floorY, z), Quaternion.identity);
+
+                DontDestroyOnLoad(spawnedFloor);
+
                 grid3D[new Vector3(x, floorY, z)] = spawnedFloor;
 
                 
@@ -103,17 +120,23 @@ public class LevelManager : MonoBehaviour
         {
             var spawnedObstacle = Instantiate(wall3DPrefab, new Vector3(x, obstaclesY, z), Quaternion.identity);
 
+            DontDestroyOnLoad(spawnedObstacle);
+
             obstacles3D[new Vector3(x, obstaclesY, z)] = spawnedObstacle;
         }
         if (obstacle == box)
         {
             var spawnedObstacle = Instantiate(box3DPrefab, new Vector3(x, 0.75f, z), Quaternion.identity);
 
+            DontDestroyOnLoad(spawnedObstacle);
+
             obstacles3D[new Vector3(x, 0.75f, z)] = spawnedObstacle;
         }
         if (obstacle == exit)
         {
             var spawnedObstacle = Instantiate(exit3DPrefab, new Vector3(x, 0.55f, z), Quaternion.identity);
+
+            DontDestroyOnLoad(spawnedObstacle);
 
             obstacles3D[new Vector3(x, 0.55f, z)] = spawnedObstacle;
 
@@ -122,6 +145,8 @@ public class LevelManager : MonoBehaviour
         if (obstacle == agent)
         {
             var spawnedObstacle = Instantiate(agent3DPrefab, new Vector3(x, obstaclesY, z), Quaternion.identity);
+
+            DontDestroyOnLoad(spawnedObstacle);
 
             obstacles3D[new Vector3(x, obstaclesY, z)] = spawnedObstacle;
         }
