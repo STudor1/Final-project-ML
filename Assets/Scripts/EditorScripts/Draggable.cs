@@ -6,6 +6,9 @@ public class Draggable : MonoBehaviour
     private int xCoord = MainMenuScript.width;
     private int yCoord = MainMenuScript.height;
 
+    private bool isAgentPlaced = false;
+    private bool isExitPlaced = false;
+
     //[SerializeField] private ObstaclesManager obstacles;
     [SerializeField] private ObstaclesManager obstacles;
     [SerializeField] private GameObject objectPrefab;
@@ -62,7 +65,22 @@ public class Draggable : MonoBehaviour
         {
             mousePosition2 = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             //This drags the object once placed
-            obstacles.RemoveObstacle(lastPos);
+
+            if (obstacles.GetObstacleAtPosition(lastPos) == "Agent")
+            {
+                obstacles.RemoveObstacle(lastPos);
+                isAgentPlaced = false;
+            }
+            else if (obstacles.GetObstacleAtPosition(lastPos) == "Exit")
+            {
+                obstacles.RemoveObstacle(lastPos);
+                isExitPlaced = false;
+            }
+            else
+            {
+                obstacles.RemoveObstacle(lastPos);
+            }
+            
             transform.position = GetMouseWorldPosition() + mousePositionOffSet;
             grid.GetTileAtPosition(mousePosition2);
         }
@@ -163,11 +181,28 @@ public class Draggable : MonoBehaviour
         }
         if (obstacle.name == agent)
         {
-            obstacles.AddObstacle(pos, "Agent");
+            if (!isAgentPlaced)
+            {
+                obstacles.AddObstacle(pos, "Agent");
+                isAgentPlaced = true;
+            }
+            else
+            {
+                Debug.Log("Agent is already placed. This object will not be rendered.");
+            }
+            
         }
         if (obstacle.name == exit)
         {
-            obstacles.AddObstacle(pos, "Exit");
+            if (!isExitPlaced)
+            {
+                obstacles.AddObstacle(pos, "Exit");
+                isExitPlaced = true;
+            }
+            else
+            {
+                Debug.Log("An exit is already placed. This object will not be rendered.");
+            }
         }
     }
 }
