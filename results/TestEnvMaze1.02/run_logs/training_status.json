@@ -1,0 +1,65 @@
+{
+    "MoveToExit": {
+        "checkpoints": [
+            {
+                "steps": 5499979,
+                "file_path": "results\\TestEnvMaze1.02\\MoveToExit\\MoveToExit-5499979.onnx",
+                "reward": null,
+                "creation_time": 1682366135.4244409,
+                "auxillary_file_paths": [
+                    "results\\TestEnvMaze1.02\\MoveToExit\\MoveToExit-5499979.pt"
+                ]
+            },
+            {
+                "steps": 5999953,
+                "file_path": "results\\TestEnvMaze1.02\\MoveToExit\\MoveToExit-5999953.onnx",
+                "reward": null,
+                "creation_time": 1682366538.464513,
+                "auxillary_file_paths": [
+                    "results\\TestEnvMaze1.02\\MoveToExit\\MoveToExit-5999953.pt"
+                ]
+            },
+            {
+                "steps": 6499979,
+                "file_path": "results\\TestEnvMaze1.02\\MoveToExit\\MoveToExit-6499979.onnx",
+                "reward": -104.82125067710876,
+                "creation_time": 1682366947.573566,
+                "auxillary_file_paths": [
+                    "results\\TestEnvMaze1.02\\MoveToExit\\MoveToExit-6499979.pt"
+                ]
+            },
+            {
+                "steps": 6999963,
+                "file_path": "results\\TestEnvMaze1.02\\MoveToExit\\MoveToExit-6999963.onnx",
+                "reward": -121.10399875640869,
+                "creation_time": 1682367356.3866374,
+                "auxillary_file_paths": [
+                    "results\\TestEnvMaze1.02\\MoveToExit\\MoveToExit-6999963.pt"
+                ]
+            },
+            {
+                "steps": 7052350,
+                "file_path": "results\\TestEnvMaze1.02\\MoveToExit\\MoveToExit-7052350.onnx",
+                "reward": null,
+                "creation_time": 1682367485.46409,
+                "auxillary_file_paths": [
+                    "results\\TestEnvMaze1.02\\MoveToExit\\MoveToExit-7052350.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 7052350,
+            "file_path": "results\\TestEnvMaze1.02\\MoveToExit.onnx",
+            "reward": null,
+            "creation_time": 1682367485.46409,
+            "auxillary_file_paths": [
+                "results\\TestEnvMaze1.02\\MoveToExit\\MoveToExit-7052350.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "1.7.1+cu110"
+    }
+}
