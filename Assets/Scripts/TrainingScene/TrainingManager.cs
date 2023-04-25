@@ -7,7 +7,7 @@ public class TrainingManager : MonoBehaviour
 {
     [SerializeField] private GameObject agentRL;
     private GameObject agentToReplace;
-    private Vector3 agentPos;
+    public static Vector3 agentPos;
 
     private void Awake()
     {

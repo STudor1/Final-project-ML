@@ -19,7 +19,7 @@ public class AgentRLRun : Agent
 
     private void Start()
     {
-        startPos = transform.position;
+        startPos = TrainingManager.agentPos;
     }
 
     public override void Initialize()
@@ -80,6 +80,11 @@ public class AgentRLRun : Agent
         transform.rotation = Quaternion.Euler(0f, yaw, 0f);
 
         AddReward(-0.01f); //punish for not doing anything
+
+        if (transform.position.y < -5)
+        {
+            EndEpisode();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
