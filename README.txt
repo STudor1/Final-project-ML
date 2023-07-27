@@ -25,7 +25,7 @@ To check that everything has installed correctly run the following command in co
 venv\Scripts\activate
 This now starts the virtual environment. Run this to check ml agents has installed correctly
 mlagents-learn --help
-If any errors occur the set up is not correct or versions might might differ. 
+If any errors occur the set up is not correct or versions might differ. 
 
 ------------------------------------------------------------
 Commands to start the training
